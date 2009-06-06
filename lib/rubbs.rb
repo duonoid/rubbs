@@ -15,6 +15,11 @@ class Rubbs < EventMachine::Protocols::LineAndTextProtocol
     }
   end
 
+  # Outputs banner when connection is established.
+  #
+  # TODO: a super-cool ASCII Art banner (read from external file)
+  # TODO: would also be nice to throttle the text output (300, 1200, 2400bps)
+  #
   def post_init
     send_data "Hello.  Welcome to my world.\n"
   end
@@ -22,5 +27,11 @@ class Rubbs < EventMachine::Protocols::LineAndTextProtocol
 end
 
 if $0 == __FILE__
+  # to run:
+  #   $ ruby lib/rubbs.rb
+  #
+  # then:
+  #   $ telnet 127.0.0.1 1560
+  #
   Rubbs.start '127.0.0.1', 1560
 end
